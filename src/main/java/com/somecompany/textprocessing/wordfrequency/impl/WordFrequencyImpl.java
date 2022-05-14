@@ -5,8 +5,8 @@ import com.somecompany.textprocessing.wordfrequency.WordFrequency;
 import java.util.Objects;
 
 public class WordFrequencyImpl implements WordFrequency {
-    private final int frequency;
-    private String word;
+    private int frequency;
+    private final String word;
 
     public WordFrequencyImpl(String word, int frequency) {
         this.word = word;
@@ -22,17 +22,21 @@ public class WordFrequencyImpl implements WordFrequency {
         return frequency;
     }
 
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WordFrequencyImpl that = (WordFrequencyImpl) o;
-        return frequency == that.frequency && word.equals(that.word);
+        return word.equals(that.word);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(frequency, word);
+        return Objects.hash(word);
     }
 
     @Override
