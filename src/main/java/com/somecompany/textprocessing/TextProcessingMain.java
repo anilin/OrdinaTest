@@ -28,7 +28,12 @@ public class TextProcessingMain {
 
     private static void validateArguments(String[] args, String frequencyForWordInputValue) {
         if(args.length != 3) {
-            System.out.println("Please enter a sentence in double-quotes for the word frequency analysis. End with a number which will indicate the amount of most frequent words you would like to see.");
+            System.out.println("Please enter a sentence with 3 arguments as follows:");
+            System.out.println("1) A sentence in double-quotes which will be analyzed for the word frequency analysis.");
+            System.out.println("2) The second argument is the frequency of a specific word that you want to check. End off with a number which will indicate the amount of most frequent words you would like to see.");
+            System.out.println("3) End off with a number which will indicate the amount of most frequent words you would like to see.");
+            System.out.println("Example: 'The sun shines over the lake', sun, 3");
+
             System.exit(0);
         }
         if(!frequencyForWordInputValue.matches("\\w+")) {
