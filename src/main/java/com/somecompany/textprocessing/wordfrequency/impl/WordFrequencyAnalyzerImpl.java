@@ -2,6 +2,7 @@ package com.somecompany.textprocessing.wordfrequency.impl;
 
 import com.somecompany.textprocessing.wordfrequency.WordFrequency;
 import com.somecompany.textprocessing.wordfrequency.WordFrequencyAnalyzer;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.Comparator;
 import java.util.List;
@@ -9,10 +10,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@ApplicationScoped
 public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer {
     @Override
     public int calculateHighestFrequency(String text) {
-        Optional<WordFrequencyImpl> result = Stream.of(text.split("\s")).
+        Optional<WordFrequencyImpl> result = Stream.of(text.split("\\s")).
                 collect(
                         Collectors.groupingBy(
                                 String::toLowerCase,
@@ -26,7 +28,7 @@ public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer {
 
     @Override
     public int calculateFrequencyForWord(String text, String word) {
-        long count = Stream.of(text.split("\s")).
+        long count = Stream.of(text.split("\\s")).
                 filter(p -> p.equalsIgnoreCase(word)).
                 count();
 
@@ -35,7 +37,7 @@ public class WordFrequencyAnalyzerImpl implements WordFrequencyAnalyzer {
 
     @Override
     public List<WordFrequency> calculateMostFrequentNWords(String text, int n) {
-        List<WordFrequency> result = Stream.of(text.split("\s")).
+        List<WordFrequency> result = Stream.of(text.split("\\s")).
                 collect(Collectors.groupingBy(String::toLowerCase, Collectors.counting())).
         entrySet().stream().
                 map( p -> new WordFrequencyImpl(p.getKey(), p.getValue().intValue())).
