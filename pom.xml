@@ -23,7 +23,7 @@
             <testResource>
                 <directory>src/test/java</directory>
                 <excludes>
-                    <exclude>/com/somecompany/textprocessing/karate/**</exclude>
+                    <exclude>/com/somecompany/textprocessing/karate/**/*.java</exclude>
                 </excludes>
             </testResource>
         </testResources>
